@@ -1,0 +1,40 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Emergency Locator
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="halo" [class.active]="isEmergency"></div>
+  <div id="container">
+    <div class="coordinates">
+      <div *ngIf="coordinates">
+        <p>Latitude: {{ coordinates.latitude }}</p>
+        <p>Longitude: {{ coordinates.longitude }}</p>
+      </div>
+      <div *ngIf="!coordinates">
+        <p>Press the button to get your location</p>
+      </div>
+    </div>
+       <div class="button-container">
+        <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-button expand="block" class="where-am-i-button" (click)="callAllMethod()" color="dark">
+              <!-- <ion-icon slot="start" name="location"></ion-icon> -->
+              Location Set
+            </ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button expand="block"  (click)="toggleEmergency()" [color]="isEmergency ? 'danger' : 'warning'">
+              {{ isEmergency ? 'Cancel' : 'Emergency' }}
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <div id="map"></div>
+  </div>
+</ion-content>

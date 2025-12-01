@@ -1,0 +1,7 @@
+{
+  "name": "testingJonathanPlugin",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

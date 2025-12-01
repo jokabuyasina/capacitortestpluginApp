@@ -1,0 +1,19 @@
+<ion-app>
+  <div class="notification-wrapper" *ngIf="updateAvailable">
+    <div class="notification-backdrop" (click)="dismissUpdate()"></div>
+    <div class="notification-content">
+      <div class="notification-header">
+        <ion-icon name="arrow-down-circle-outline" (click)="dismissUpdate()"></ion-icon>
+      </div>
+      <div class="notification-body" >
+        <h3>New Update Ready</h3> 
+        <p>A new version of the app is available.</p>
+        <p>Version: {{ updateInfo?.bundle.version }}</p>
+      </div>
+      <div class="notification-footer">
+        <button class="update-button" (click)="doUpdate()">Install Now</button>
+      </div>
+    </div>
+  </div>
+  <ion-router-outlet></ion-router-outlet>
+</ion-app>
