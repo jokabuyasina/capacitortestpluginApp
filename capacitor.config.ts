@@ -9,8 +9,9 @@ const config: CapacitorConfig = {
     SplashScreen: {
       launchAutoHide: false
     },
+    
     CapacitorUpdater: {
-      version: '1.0.1',
+      version: '1.0.5',
       appId: 'com.jonathank.apptestplugin',
       autoUpdate: true,
       directUpdate: 'always',

@@ -6,6 +6,8 @@ PODS:
   - CapacitorApp (7.1.0):
     - Capacitor
   - CapacitorCordova (7.4.4)
+  - CapacitorDevice (7.0.2):
+    - Capacitor
   - CapacitorExampleplugin (1.0.0):
     - Capacitor
   - CapacitorHaptics (7.0.2):
@@ -24,10 +26,11 @@ PODS:
   - Version (0.8.0)
 
 DEPENDENCIES:
-  - "Capacitor (from `../../../node_modules/@capacitor/ios`)"
+  - "Capacitor (from `../../node_modules/@capacitor/ios`)"
   - "CapacitorApp (from `../../node_modules/@capacitor/app`)"
-  - "CapacitorCordova (from `../../../node_modules/@capacitor/ios`)"
-  - CapacitorExampleplugin (from `../../..`)
+  - "CapacitorCordova (from `../../node_modules/@capacitor/ios`)"
+  - "CapacitorDevice (from `../../node_modules/@capacitor/device`)"
+  - CapacitorExampleplugin (from `../../node_modules/capacitor-exampleplugin`)
   - "CapacitorHaptics (from `../../node_modules/@capacitor/haptics`)"
   - "CapacitorKeyboard (from `../../node_modules/@capacitor/keyboard`)"
   - "CapacitorStatusBar (from `../../node_modules/@capacitor/status-bar`)"
@@ -42,13 +45,15 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   Capacitor:
-    :path: "../../../node_modules/@capacitor/ios"
+    :path: "../../node_modules/@capacitor/ios"
   CapacitorApp:
     :path: "../../node_modules/@capacitor/app"
   CapacitorCordova:
-    :path: "../../../node_modules/@capacitor/ios"
+    :path: "../../node_modules/@capacitor/ios"
+  CapacitorDevice:
+    :path: "../../node_modules/@capacitor/device"
   CapacitorExampleplugin:
-    :path: "../../.."
+    :path: "../../node_modules/capacitor-exampleplugin"
   CapacitorHaptics:
     :path: "../../node_modules/@capacitor/haptics"
   CapacitorKeyboard:
@@ -64,6 +69,7 @@ SPEC CHECKSUMS:
   Capacitor: 09d9ff8e9618e8c4b3cab2bbee34a17215dd2fef
   CapacitorApp: 846d4b4a1dbb19dd1e9029c08ba6f028aa7be862
   CapacitorCordova: bf648a636f3c153f652d312ae145fb508b6ffced
+  CapacitorDevice: a50a45f0d075e55e2392c7a4be5404d4f69515de
   CapacitorExampleplugin: 195602c48401f9378450f7ffe488889d3c29c03e
   CapacitorHaptics: 09d96bcb5a2b74ede8fd039b4cdf58fc43dcacf1
   CapacitorKeyboard: 3822c3a0c6b58168f96ca562f9534ed095d40860
@@ -72,6 +78,6 @@ SPEC CHECKSUMS:
   SSZipArchive: fe6a26b2a54d5a0890f2567b5cc6de5caa600aef
   Version: de5907f2c5d0f3cf21708db7801d1d5401139486
 
-PODFILE CHECKSUM: e193d60b0c1c60de5309a36a42e554dd7ab2b21f
+PODFILE CHECKSUM: 4f4d06edf233accdd43396060537030e09831429
 
 COCOAPODS: 1.16.2

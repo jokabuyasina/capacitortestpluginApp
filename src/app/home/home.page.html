@@ -7,34 +7,113 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="halo" [class.active]="isEmergency"></div>
+  
   <div id="container">
-    <div class="coordinates">
-      <div *ngIf="coordinates">
-        <p>Latitude: {{ coordinates.latitude }}</p>
-        <p>Longitude: {{ coordinates.longitude }}</p>
+    
+    <div class="action_holder">
+      <div class="user_profile">
+          <div class="profile-header">
+             <div class="avatar-text-row">
+                   <div class="avatar_holder">
+                    <ion-avatar>
+                     <img src="assets/img/premium_photo-1677181729027-a7873c1f6cb5copy.png" alt="User Avatar">
+                   </ion-avatar>
+                   </div>
+                   <div class="profile-info">
+                   <h1>Hello There,</h1>
+                   <p>Pinpoint your exact location instantly!</p>
+                 </div>
+             </div>
+            </div>
       </div>
-      <div *ngIf="!coordinates">
-        <p>Press the button to get your location</p>
-      </div>
-    </div>
-       <div class="button-container">
-        <ion-grid>
+
+      <div class="button-container">
+      <ion-grid>
         <ion-row>
-          <ion-col>
-            <ion-button expand="block" class="where-am-i-button" (click)="callAllMethod()" color="dark">
-              <!-- <ion-icon slot="start" name="location"></ion-icon> -->
-              Location Set
-            </ion-button>
-          </ion-col>
-          <ion-col>
-            <ion-button expand="block"  (click)="toggleEmergency()" [color]="isEmergency ? 'danger' : 'warning'">
-              {{ isEmergency ? 'Cancel' : 'Emergency' }}
-            </ion-button>
-          </ion-col>
+        <ion-col>
+          <ion-button expand="block" 
+                       [class.location-set]="coordinates"
+                       class="where-am-i-button" 
+                       (click)="callAllMethod()" 
+                       [color]="coordinates ? 'success' : 'dark'">
+            {{ coordinates ? '✓ Located' : 'Locate Me' }}
+          </ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button expand="block" (click)="toggleEmergency()" [color]="isEmergency ? 'danger' : 'warning'">
+          {{ isEmergency ? 'Cancel' : 'Emergency' }}
+          </ion-button>
+        </ion-col>
         </ion-row>
       </ion-grid>
+      </div>
     </div>
     <div id="map"></div>
+    <!-- Center marker overlay so the map's target stays centered -->
+    <div class="map-center-marker" aria-hidden="true"></div>
+    
+    <!-- Glow halo around pin -->
+    <div class="halo" [class.active]="isEmergency"></div>
+    <div id="bottom-sheet"
+         role="dialog"
+         [style.height.px]="sheetHeight"
+         [class.animating]="sheetAnimating"
+         (touchstart)="onSheetTouchStart($event)"
+         (touchmove)="onSheetTouchMove($event)"
+         (touchend)="onSheetTouchEnd($event)"
+         (mousedown)="onSheetMouseDown($event)"
+         >
+      <div class="sheet-handle"></div>
+      <div class="sheet-content">
+        <h3>Device Information</h3>
+
+       <div class="deviceInfo" *ngIf="deviceInfo">
+          <div class="battery-section">
+            <div class="battery-percentage">
+              {{ (deviceInfo.batteryInfo?.level ? (deviceInfo.batteryInfo.level * 100) : 0) | number:'1.0-0' }}<span>%</span>
+            </div>
+            <div class="device-details">
+              <div class="detail-item">
+                <span class="label">Manufacturer:</span>
+                <span class="value">{{ deviceInfo.info.manufacturer }}</span>
+              </div>
+              <div class="detail-item">
+                <span class="label">Model:</span>
+                <span class="value">{{ deviceInfo.info.model }}</span>
+              </div>
+              <div class="detail-item">
+                <span class="label">OS:</span>
+                <span class="value">{{ deviceInfo.info.operatingSystem }}</span>
+              </div>
+              <div class="detail-item">
+                <span class="label">Version:</span>
+                <span class="value">{{ deviceInfo.info.osVersion }}</span>
+              </div>
+              <div class="detail-item">
+                <span class="label">Charging:</span>
+                <span class="value" [class.charging]="deviceInfo.batteryInfo?.isCharging">
+                  {{ deviceInfo.batteryInfo?.isCharging ? '⚡ Charging' : '🔋 Discharging' }}
+                </span>
+              </div>
+            </div>
+          </div>
+       </div> 
+
+
+         <div class="location-section" *ngIf="coordinates">
+          <h4>📍 Your Location</h4>
+          <div class="coordinates-display">
+            <div class="coord-item">
+              <span class="coord-label">Latitude</span>
+              <span class="coord-value">{{ coordinates.latitude | number:'1.6-6' }}</span>
+            </div>
+            <div class="coord-item">
+              <span class="coord-label">Longitude</span>
+              <span class="coord-value">{{ coordinates.longitude | number:'1.6-6' }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </ion-content>
